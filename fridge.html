@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title> Fridge App </title>  
+  <meta charset="UTF-8">
+
+<style>
+
+
+    .fridge {text-align:center; position: fixed; height: 600px; width: 500px; border: solid black; border-width: 1px; left: 32.5%; top: 100px; height: 500px; padding-top: 20px; background-color: darkblue; border-radius: 25px;}
+    .clock {text-align:center; border: solid white; border-width: 1px; display: inline-block; background-color:black; color:red; font-size:30px; padding: 10px 10px 10px 10px; font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif } 
+    .temp  {text-align:center; border: solid white; border-width: 1px; display: inline-block; background-color:black; color:red; font-size:30px; padding: 10px 10px 10px 10px; font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif }
+    .powerButton {border: solid black; border-width: 1px; width: 70px; height: 40px; font-size: 16px; font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif}
+    .openButton {border: solid black; border-width: 1px; width: 100px; height: 40px; font-size: 16px; font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif}
+    .tvButton {border: solid black; border-width: 1px; width: 80px; height: 40px; font-size: 16px; font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif}
+    .browserButton {border: solid black; border-width: 1px; width: 110px; height: 40px; font-size: 16px; font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif}
+    .buttonDiv {text-align: left; margin: 20px 20px 20px 40px}
+    .screen {text-align:center; background-color: black; width: 350px; height: 200px; margin-left: 75px;}
+    .openedFridge {text-align:center; width:400px; height:250px; display:none;}
+    .tv {text-align:center; width:350px; height:200px; display:none;}
+    .browser {text-align:center; width:350px; height:200px; display:none;}
+ 
+
+</style>
+
+</head>
+
+<body onload="startFridge()">
+
+    <div class="fridge">
+        <br>
+
+        <div class="clock" id="clock">
+            CLOCK
+        </div>
+
+        &emsp;
+
+        <div class="temp" id="temp">
+            TEMP
+        </div>
+
+        <br>
+        <br>
+
+        <div class="buttonDiv">
+
+            <input type=button class="powerButton" id="onButton" onclick="changePowerState()" value="Turn On"> </input>
+            &emsp;
+            <input type=button class="openButton" id="openButton" onclick="openFridge()" value="Open Fridge"> </input>
+            &emsp;
+            <input type=button class="tvButton" id="tvButton" onclick="openTV()" value="Watch TV"> </input>
+            &emsp;
+            <input type=button class="browserButton" id="browserButton" onclick="openBrowser()" value="Open Browser"> </input>
+
+        </div>
+
+        <div class="screen" id="screen">
+            <img src="https://i.gyazo.com/2a8127a5b3fbfe90d2c6080c064c31ac.png" id="fridgeScreen">
+        </div>
+
+        <div class="tv" id="tv">
+            <img src="https://aptokash.github.io/SD330/06-tv.jpg" id="fridgeTV">
+        </div>
+
+        <div class="browser" id="browser">
+            <img src="https://aptokash.github.io/SD330/06-web.jpg" height="275px" width="500px">
+        </div>
+
+        <div class="openedFridge" id="openedFridge"> 
+            <img src="https://aptokash.github.io/SD330/06-fridge.jpg" id="fridgeItems" width="225px" height="300px">
+        </div>
+        
+
+
+    </div>
+
+</body>
+
+<script>
+
+    var currentTemp = 70
+    var fridgeStatus = 0;
+    var fridgeInUse = 0;
+    var fridgeOpen = 0;
+    var tvOn = 0;
+    var browserOpen = 0;
+
+    tempDisplay.innerHTML = currentTemp + "&#176;";
+
+    function startFridge() {
+
+        doClockTick();
+        setInterval(doClockTick,1000);
+
+        updateTemp();
+        setInterval(updateTemp,1500);
+
+    }
+
+    function doClockTick() {
+        var currentDate = new Date();
+        var hours = currentDate.getHours();
+        var mins = currentDate.getMinutes();
+        var secs = currentDate.getSeconds();
+
+        if (hours < 10) {
+                hours = "0" + hours;
+            }
+        
+        if (mins < 10) {
+            mins = "0" + mins;
+        }
+
+        if (secs < 10) {
+                secs = "0" + secs;
+            }
+
+        var timeString = hours + ":" + mins + ":" + secs;
+
+        var outputElement = document.getElementById("clock");
+        outputElement.innerHTML = timeString;
+    }
+
+    function updateTemp() {
+
+        var tempDisplay = document.getElementById("temp");
+
+        if (fridgeStatus == 0) {
+
+            if (currentTemp != 70) {
+                currentTemp += 1;
+            }
+
+            if (currentTemp > 45) {
+                tempDisplay.style.color = "orange";
+            } else if (currentTemp < 45) {
+                tempDisplay.style.color = "cyan";
+            }
+
+        }
+
+        if (fridgeStatus == 1) {
+
+            if (currentTemp != 38) {
+                currentTemp -= 1;
+            }
+
+            if (currentTemp > 45) {
+                tempDisplay.style.color = "orange";
+            } else if (currentTemp < 45) {
+                tempDisplay.style.color = "cyan";
+            }
+
+        }
+
+        
+        tempDisplay.innerHTML = currentTemp + "&#176;";
+
+    }
+
+    function changePowerState() {
+
+        powerButton = document.getElementById("onButton");
+
+        if (fridgeStatus == 0) {
+            fridgeStatus = 1;
+            powerButton.value = "Turn Off";
+        } else if (fridgeStatus == 1) {
+            fridgeStatus = 0;
+            powerButton.value = "Turn On";
+        }
+
+    }
+
+    function openFridge() {
+
+        
+
+        openButton = document.getElementById("openButton");
+        openedFridge = document.getElementById("openedFridge");
+        screen = document.getElementById("screen");
+
+
+        if (fridgeInUse == 0 && fridgeOpen == 0) {
+            fridgeInUse = 1;
+            fridgeOpen = 1;
+            openButton.value = "Close Fridge";
+            openedFridge.style.display = "initial"
+            screen.style.display = "none";
+            
+        } else if (fridgeInUse == 1 && fridgeOpen == 1) {
+            fridgeOpen = 0;
+            fridgeInUse = 0;
+            openButton.value = "Open Fridge";
+            openedFridge.style.display = "none"
+            screen.style.display = "block";
+        }
+
+    }
+
+    function openTV() {
+
+        
+        fridgeTV = document.getElementById("tv");
+        tvButton = document.getElementById("tvButton");
+        screen = document.getElementById("screen");
+
+        if (fridgeInUse == 0 && tvOn == 0) {
+
+            tvOn = 1;
+            fridgeInUse = 1;
+            tvButton.value = "Stop TV";
+            fridgeTV.style.display = "block";
+            screen.style.display = "none";
+
+        } else if (fridgeInUse == 1 && tvOn == 1) {
+
+            tvOn = 0; 
+            fridgeInUse = 0;
+            tvButton.value = "Watch TV";
+            fridgeTV.style.display = "none";
+            screen.style.display = "block";
+
+
+        }
+
+    }
+
+    function openBrowser() {
+
+        fridgeBrowser = document.getElementById("browser");
+        browserButton = document.getElementById("browserButton");
+        screen = document.getElementById("screen");
+
+        if (fridgeInUse == 0 && browserOpen == 0) {
+
+            browserOpen = 1;
+            fridgeInUse = 1;
+            browserButton.value = "Close Browser"
+            fridgeBrowser.style.display = "block";
+            screen.style.display = "none";
+
+        } else if (fridgeInUse == 1 && browserOpen == 1) {
+
+            browserOpen = 0;
+            fridgeInUse = 0;
+            browserButton.value = "Open Browser";
+            fridgeBrowser.style.display = "none";
+            screen.style.display = "block";
+
+        }
+
+    }
+
+</script>
+
+</html>
