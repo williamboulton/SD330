@@ -1,0 +1,7 @@
+.crumbs {padding: 10px;}
+
+.crumbLink {display: inline-block;}
+
+.crumbLink:not(:last-of-type)::after {content: ">";  margin: 0 5px;}
+
+.currentPage {color: #00cccc;}
