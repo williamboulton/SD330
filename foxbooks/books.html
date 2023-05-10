@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<!--    books.html    
+    05/09/2023 WB Original Program
+    -->
+<html lang="en">
+<head>
+  <title> Course Books </title>  
+  <meta charset="UTF-8">
+
+  <style>
+
+    h1 {text-align: center;}
+    img {height: 200px; margin-top: -20px;}
+    .header {margin-top: -40px; text-align: center; font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; font-size: 20px;}
+    hr {background-color: red; border-color: red; height:3px; margin-top: -10px;}
+    .main {font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; font-size: 30px; text-align:center;}
+    .left {font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; font-size: 20px; text-align:center; margin-right: 1200px; margin-top: -300px;}
+    .right {font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; font-size: 20px; text-align:center; margin-left: 1200px; margin-top: -370px;}
+    .button {font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; font-size: 20px; border-radius: 20px; padding: 10px;}
+    .button:hover {background-color: darkgray;}
+    .buyButton {font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; font-size: 16px; border-radius: 20px; padding: 10px;}
+    .buyButton:hover {background-color: darkgray;}
+    .searchBar {height:50px; width:400px; font-size:25px;} 
+    #holder {min-height: 100%; position: relative;}
+    #body {padding-bottom: 25px;}
+    footer {height: 25px; width: 100%; position: absolute; left: 0; bottom: 0; background-color:#660000; color:white; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; padding-top: 7px;}
+    .footerLink {color:white;}
+    table {margin-left: auto; margin-right: auto; font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; border-top-style: ridge; border-left-style: ridge; border-bottom-style: ridge; border-right-style: ridge; font-size: 20px;}
+    .bookButton {font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; font-size: 20px;}
+    .crumbLink {display: inline-block; font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif}
+    .crumbLink:not(:last-of-type)::after {content: ">";  margin: 0 5px;}
+    .currentPage {color: maroon; text-decoration: underline; text-decoration-color: maroon;}
+    li {cursor: pointer;}
+
+</style>
+
+</head>
+
+<body>
+
+    <h1> <img src="logo.png"> </h1>
+
+    <p class="header">
+        <a href="index.html">Home</a> &emsp; <a href="courses.html">View Courses</a> &emsp; <a href="">Login</a> &emsp; <input type="text" placeholder="Search for books..."> <button> Search </button>
+    </p>
+
+    <hr>
+
+    <nav>
+
+        <ul class="crumbs">
+
+            <li class="crumbLink"> <a href="index.html">Home</a> </li>
+            <li class="crumbLink"> <a href="courses.html">Courses</a> </li>
+            <li class="crumbLink"> <u><a id="bookPage" class="currentPage" onclick="redirect()">Course Books</a></u> </li>
+
+        </ul>
+
+    </nav>
+
+    <p class="main" id="books">
+
+        Here are the books that are currently assigned to the 
+
+    </p>
+
+
+    <footer> &copy; W Boulton, 2023 &emsp; <a class="footerLink" href="">About Us</a> &emsp; <a class="footerLink" href="">Disclaimer</a> &emsp; <a class="footerLink" href="">Privacy Policy</a> </footer>
+
+    <script>
+
+        var json = {
+
+        "courses": [
+        {"courseid":"ENG 101", "name":"Writing For College"},
+        {"courseid":"CMPT 120", "name":"Intro to Programming"},
+        {"courseid":"PHIL 101", "name":"Philosophical Perspectives"},
+        {"courseid":"CMPT 330", "name":"System Design"},
+        {"courseid":"PSYC 101", "name":"Intro to Psychology"},
+        {"courseid":"CMPT 230", "name":"Systems Analysis"},
+        {"courseid":"MATH 241", "name":"Calculus I"},
+        {"courseid":"PHIL 200 ", "name":"Ethics"}
+
+        ],
+        "books": [
+            {"name": "Patterns Across Cultures - 2nd Edition", "author": "Jane Hill"},
+            {"name": "Python Programming: An Introduction", "author": "Franklin Paige"},
+            {"name": "Perspectives of Modern Philosophy", "author": "Moris Stern"},
+            {"name": "Human Interaction Design", "author": "Gazzaniga, M. S."},
+            {"name": "Psychological Science - 6th Edition", "author": "Gary Glick"},
+            {"name": "Systems Analysis and Design", "author": "Allan Dennis"},
+            {"name": "Single Variable Calculus", "author": "J. Stewart"},
+            {"name": "Principles of Moral Philosophy", "author": "Cahn"}
+
+
+        ]
+
+        }
+
+        var url = window.location.toLocaleString();
+        let parameter = url.split("i=")[1];
+
+        document.getElementById("books").innerHTML += "<b>" + json.courses[parameter].name + "</b> course. <br> <br> <table> <tr> <th> Book Name </th> <th> Author </th> </tr> <td> " + json.books[parameter].name + " </td> <td> &emsp; " + json.books[parameter].author + " </td> <td> &emsp; <button class='bookButton'> Buy Now </button>";
+        
+        function redirect() {
+            var link = "books.html?i=" + parameter;
+            location.assign(link);
+        }
+
+    </script>
+
+</body>
+
+
+
+</html>
+
+

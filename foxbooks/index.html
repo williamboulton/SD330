@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<!--    index.html    
+    05/09/2023 WB Original Program
+    -->
+<html lang="en">
+<head>
+  <title> FoxBooks </title>  
+  <meta charset="UTF-8">
+
+<style>
+
+    h1 {text-align: center;}
+    img {height: 200px; margin-top: -20px;}
+    .header {margin-top: -40px; text-align: center; font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; font-size: 20px;}
+    hr {background-color: red; border-color: red; height:3px; margin-top: -10px;}
+    .main {font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; font-size: 30px; text-align:center;}
+    .left {font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; font-size: 20px; text-align:center; margin-right: 1200px; margin-top: -300px;}
+    .right {font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; font-size: 20px; text-align:center; margin-left: 1200px; margin-top: -370px;}
+    .button {font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; font-size: 20px; border-radius: 20px; padding: 10px;}
+    .button:hover {background-color: darkgray;}
+    .buyButton {font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; font-size: 16px; border-radius: 20px; padding: 10px;}
+    .buyButton:hover {background-color: darkgray;}
+    .searchBar {height:50px; width:400px; font-size:25px;} 
+    #holder {min-height: 100%; position: relative;}
+    #body {padding-bottom: 25px;}
+    footer {height: 25px; width: 100%; position: absolute; left: 0; bottom: 0; background-color:#660000; color:white; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; padding-top: 7px;}
+    .footerLink {color:white;}
+
+</style>
+
+</head>
+
+<body>
+
+    <h1> <img src="logo.png"> </h1>
+
+    <p class="header">
+        <a href="index.html">Home</a> &emsp; <a href="courses.html">View Courses</a> &emsp; <a href="">Login</a> &emsp; <input type="text" placeholder="Search for books..."> <button> Search </button>
+    </p>
+
+    <hr>
+
+    <p class="main">
+        Welcome to FoxBooks!
+        <br> <br>
+        <button class="button" onclick="location.assign('courses.html')"> View All Available Courses </button>
+        <br> <br>
+        <button class="button"> View All Available Books </button>
+        <br> <br>
+        <input class="searchBar" type="text" placeholder="Search for books..."> <button class="button"> Search </button>
+    </p>
+
+    <p class="left">
+
+        <b> Today's Featured Item </b>
+        <br> <br>
+        <img src="backpack.jpg">
+        <br> <br>
+        Nike Marist Red Backpack 
+        <br> $19.99
+        <br>
+        <button class="buyButton"> Buy Now </button>
+
+
+    </p>
+
+    <p class="right">
+
+        <b> Clearance Sale </b>
+        <br> <br>
+        <img src="jacket.jpg">
+        <br> <br>
+        Champion Marist Red Zipper Jacket
+        <br>
+        <strike>$39.99</strike> <b> NOW $24.99 </b> 
+        <br>
+        <button class="buyButton"> Buy Now </button>
+
+    </p>
+
+
+
+    <footer> &copy; W Boulton, 2023 &emsp; <a class="footerLink" href="">About Us</a> &emsp; <a class="footerLink" href="">Disclaimer</a> &emsp; <a class="footerLink" href="">Privacy Policy</a> </footer>
+
+
+
+
+
+</body>
+
+
+
+</html>
+
+

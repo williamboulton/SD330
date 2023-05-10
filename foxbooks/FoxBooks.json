@@ -1,0 +1,27 @@
+{
+
+"courses": [
+	{"courseid":"ENG 101", "name":"Writing For College"},
+	{"courseid":"CMPT 120", "name":"Intro to Programming"},
+	{"courseid":"PHIL 101", "name":"Philosophical Perspectives"},
+	{"courseid":"CMPT 330", "name":"System Design"},
+	{"courseid":"PSYC 101", "name":"Intro to Psychology"},
+	{"courseid":"CMPT 230", "name":"Systems Analysis"},
+	{"courseid":"MATH 241", "name":"Calculus I"},
+	{"courseid":"PHIL 200 ", "name":"Ethics"}
+
+	],
+	"books": [
+		{"name": "Patterns Across Cultures - 2nd Edition", "author": "Jane Hill"},
+		{"name": "Python Programming: An Introduction", "author": "Franklin Paige"},
+		{"name": "Perspectives of Modern Philosophy", "author": "Moris Stern"},
+		{"name": "Human Interaction Design", "author": "Gazzaniga, M. S."},
+		{"name": "Psychological Science - 6th Edition", "author": "Gary Glick"},
+		{"name": "Systems Analysis and Design", "author": "Allan Dennis"},
+		{"name": "Single Variable Calculus", "author": "J. Stewart"},
+		{"name": "Principles of Moral Philosophy", "author": "Cahn"}
+
+
+	]
+
+}
